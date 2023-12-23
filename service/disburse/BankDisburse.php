@@ -12,16 +12,16 @@ class BankDisburse extends \Disburse
      * 线上银行转账，根据文档描述传参需要
      * @param $disburseAppId    -代付appID
      * @param ...$params
-     * @return void
+     * @return array
      */
     public function create($disburseAppId,...$params){
         $body = [
             'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
             'businessOrderNo' => rand(1,10000) . '-HasMany-mchOrderNo',
-            'amount' => "10000",
+            'amount' => "300",
             'currency' => 'PHP',
             'bankCode' => 'RBMI',
-            'bankCard' => '09053005108',
+            'bankCard' => '09053005107',
             'userName' => 'Manila',
             'userMobile' => '639053005108',
             'appId' => $disburseAppId,
@@ -46,25 +46,23 @@ class BankDisburse extends \Disburse
                 ],
             ],
             'customExtra' => [
-                'userId' => 123,
-                'othersInfo' => 'xxxx',
+                'nope' => 'a',
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/disburse/bank-transfer/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/bank-transfer/create',$body);
     }
 
     /**
      * 线上银行转账，查询订单
      * @param $onFilter
      * @param $onValue
+     * @return array
      */
     public function query($onFilter,$onValue){
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/disburse/bank-transfer/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/bank-transfer/get',$body);
     }
 
 }

@@ -40,9 +40,19 @@ $handlers = [
             //银行转账
             $bankDisburse = new BankDisburse($novapay);
             //创建
-            $bankDisburse->create($disburseAppId);
+            $disburseCall = $bankDisburse->create($disburseAppId);
+            $disburseResult = json_decode($disburseCall['response'],true);
+
+            echo "\n银行转账：\n";
+            print_r(json_encode($disburseResult,JSON_PRETTY_PRINT));
+
             //查询
-            $bankDisburse->query('ORDER_NO','231211851062563348422656-PH-PAY');
+            $orderNo = $disburseResult['data']['orderNo'];
+            $bankDisburseQueryCall = $bankDisburse->query('ORDER_NO',$orderNo);
+            $bankDisburseQueryResult = json_decode($bankDisburseQueryCall['response'],true);
+
+            echo "\n银行转账查询：\n";
+            print_r(json_encode($bankDisburseQueryResult,JSON_PRETTY_PRINT));
         },
         'ewalletTopup' => function()use($novapay,$disburseAppId){
             //电子钱包充值
