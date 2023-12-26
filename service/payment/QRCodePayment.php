@@ -16,7 +16,7 @@ class QRCodePayment extends \Payment
      */
     public function create($paymentAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'amount' => "100000",
             'currency' => 'PHP',
             'appId' => $paymentAppId,

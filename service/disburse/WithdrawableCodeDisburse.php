@@ -12,13 +12,12 @@ class WithdrawableCodeDisburse extends \Disburse
      * 电子钱包充值，根据文档描述传参需要
      * @param $disburseAppId    -代付appID
      * @param ...$params
-     * @return void
      */
     public function create($disburseAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,9999999),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'businessOrderNo' => rand(1,10000) . '-HasMany-mchOrderNo',
-            'amount' => "10000",
+            'amount' => "500000",
             'currency' => 'PHP',
             'userMobile' => '639053005106',
             'appId' => $disburseAppId,
@@ -48,8 +47,7 @@ class WithdrawableCodeDisburse extends \Disburse
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/disburse/withdrawal-code/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/withdrawal-code/create',$body);
     }
 
     /**
@@ -60,8 +58,7 @@ class WithdrawableCodeDisburse extends \Disburse
     public function query($onFilter,$onValue){
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/disburse/withdrawal-code/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/withdrawal-code/get',$body);
     }
 
     /**
@@ -74,8 +71,7 @@ class WithdrawableCodeDisburse extends \Disburse
     {
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/disburse/withdrawal-code/cancel',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/withdrawal-code/cancel',$body);
     }
 
 }

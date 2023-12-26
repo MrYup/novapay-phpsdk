@@ -12,15 +12,14 @@ class BankPayment extends \Payment
      * 创建银行代收的付款链接
      * @param $paymentAppId    -代付appID
      * @param ...$params
-     * @return void
      */
     public function create($paymentAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
-            'minAmount' => "100000",
-            'maxAmount' => "100000",
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
+            'minAmount' => "50000",
+            'maxAmount' => "50000",
             'currency' => 'PHP',
-            'bankCode' => 'GCASH',
+            'bankCode' => 'UBP',
             'isSingleUsed' => 1,
             'appId' => $paymentAppId,
             'expireSeconds' => 86400,
@@ -50,8 +49,7 @@ class BankPayment extends \Payment
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/payment/bank/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/payment/bank/create',$body);
     }
 
     /**
@@ -62,13 +60,11 @@ class BankPayment extends \Payment
      * @param $pageSize
      * @param $startTime
      * @param $endTime
-     * @return void
      */
     public function query($onFilter,$onValue,$page = 1,$pageSize = 50 , $startTime = '',$endTime = ''){
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/payment/bank/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/payment/bank/get',$body);
     }
 
 }

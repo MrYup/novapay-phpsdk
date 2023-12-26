@@ -16,7 +16,7 @@ class EWalletPayment extends \Payment
      */
     public function create($paymentAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'minAmount' => "100000",
             'maxAmount' => "100000",
             'isSingleUsed' => 1,

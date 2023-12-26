@@ -24,7 +24,7 @@ class OTCPayment
      */
     public function create($paymentAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'minAmount' => "50000",
             'maxAmount' => "100000",
             'currency' => 'PHP',

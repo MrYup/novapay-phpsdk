@@ -12,16 +12,15 @@ class EwalletTopupDisburse extends \Disburse
      * 电子钱包充值，根据文档描述传参需要
      * @param $disburseAppId    -代付appID
      * @param ...$params
-     * @return void
      */
     public function create($disburseAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'businessOrderNo' => rand(1,10000) . '-HasMany-mchOrderNo',
             'amount' => "10000",
             'currency' => 'PHP',
             'bankCode' => 'GCASH',
-            'userMobile' => '639053005100',
+            'userMobile' => '639053005109',
             'appId' => $disburseAppId,
             'options' => [
                 'userInfo' => [
@@ -49,8 +48,7 @@ class EwalletTopupDisburse extends \Disburse
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/disburse/ewallet/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/ewallet/create',$body);
     }
 
     /**
@@ -61,8 +59,7 @@ class EwalletTopupDisburse extends \Disburse
     public function query($onFilter,$onValue){
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/disburse/ewallet/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/ewallet/get',$body);
     }
 
 }

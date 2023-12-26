@@ -16,12 +16,12 @@ class BankDisburse extends \Disburse
      */
     public function create($disburseAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'businessOrderNo' => rand(1,10000) . '-HasMany-mchOrderNo',
             'amount' => "300",
             'currency' => 'PHP',
             'bankCode' => 'RBMI',
-            'bankCard' => '09053005107',
+            'bankCard' => '09053005108',
             'userName' => 'Manila',
             'userMobile' => '639053005108',
             'appId' => $disburseAppId,
@@ -45,9 +45,7 @@ class BankDisburse extends \Disburse
                     'address' => '',
                 ],
             ],
-            'customExtra' => [
-                'nope' => 'a',
-            ],
+            'customExtra' => '',
         ];
 
         return $this->instance->hitEndpoint('/disburse/bank-transfer/create',$body);

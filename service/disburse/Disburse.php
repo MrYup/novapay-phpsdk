@@ -22,15 +22,15 @@ class Disburse
      */
     public function create($disburseAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'businessOrderNo' => rand(1,10000) . '-HasMany-mchOrderNo',
             'amount' => "10000",
             'currency' => 'PHP',
             'bankCode' => 'RBMI',
-            'paymentMethod' => 1,
+            'paymentMethod' => 3,
             'bankCard' => '09053005108',
             'userName' => 'Manila Lucky',
-            'userMobile' => '639053005108',
+            'userMobile' => '639053005107',
             'appId' => $disburseAppId,
             'options' => [
                 'userInfo' => [
@@ -58,8 +58,7 @@ class Disburse
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/disburse/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/create',$body);
     }
 
     /**
@@ -70,8 +69,7 @@ class Disburse
     public function query($onFilter,$onValue){
         $body = compact('onFilter','onValue');
 
-        $result = $this->instance->hitEndpoint('/disburse/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/disburse/get',$body);
     }
 
     /**

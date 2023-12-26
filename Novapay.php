@@ -143,7 +143,8 @@ class Novapay
 
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
+        $curlNo = curl_errno($curl);
+        $curlError = curl_error($curl);
         curl_close($curl);
 
 
@@ -153,6 +154,8 @@ class Novapay
             ,'method'
             ,'response'
             ,'httpCode'
+            ,'curlNo'
+            ,'curlError'
         );
     }
 

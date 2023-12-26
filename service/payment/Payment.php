@@ -20,11 +20,10 @@ class Payment
      * 创建订单
      * @param $paymentAppId
      * @param ...$params
-     * @return void
      */
     public function create($paymentAppId,...$params){
         $body = [
-            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,1000),
+            'mchOrderNo' => 'YourMerchantOrderNo' . rand(1,10000000),
             'minAmount' => "50000",
             'maxAmount' => "100000",
             'currency' => 'PHP',
@@ -59,8 +58,7 @@ class Payment
             ],
         ];
 
-        $result = $this->instance->hitEndpoint('/payment/create',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/payment/create',$body);
     }
 
     /**
@@ -71,12 +69,10 @@ class Payment
      * @param $pageSize
      * @param $startTime
      * @param $endTime
-     * @return void
      */
     public function query($onFilter,$onValue,$page = 1,$pageSize = 50 , $startTime = '',$endTime = ''){
         $body = compact('onFilter','onValue','page','pageSize','startTime','endTime');
 
-        $result = $this->instance->hitEndpoint('/payment/get',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/payment/get',$body);
     }
 }
