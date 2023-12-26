@@ -31,7 +31,7 @@ $handlers = [
         '' => function()use($novapay,$disburseAppId){
             //通用代付
             $disburse = new Disburse($novapay);
-            //创建
+//            //创建
             $disburseCall = $disburse->create($disburseAppId);
             $disburseResult = json_decode($disburseCall['response'],true);
 
@@ -40,7 +40,7 @@ $handlers = [
 
             //查询
             $orderNo = $disburseResult['data']['orderNo'];
-            $disburseQueryCall = $disburse->query('ORDER_NO',$orderNo);
+            $disburseQueryCall = $disburse->query('MCH_ORDER_NO',$orderNo);
             $disburseQueryResult = json_decode($disburseQueryCall['response'],true);
 
             echo "\n通用代付查询：\n";
@@ -67,7 +67,7 @@ $handlers = [
         'ewalletTopup' => function()use($novapay,$disburseAppId){
             //电子钱包充值
             $ewalletTopup = new EwalletTopupDisburse($novapay);
-            //创建
+//            //创建
             $disburseCall = $ewalletTopup->create($disburseAppId);
             $disburseResult = json_decode($disburseCall['response'],true);
 
@@ -76,7 +76,7 @@ $handlers = [
 
             //查询
             $orderNo = $disburseResult['data']['orderNo'];
-            $disburseQueryCall = $ewalletTopup->query('ORDER_NO',$orderNo);
+            $disburseQueryCall = $ewalletTopup->query('MCH_ORDER_NO',$orderNo);
             $disburseQueryResult = json_decode($disburseQueryCall['response'],true);
 
             echo "\n电子钱包充值查询：\n";
@@ -86,16 +86,16 @@ $handlers = [
         'withdrawAbleCode' => function()use($novapay,$disburseAppId){
             //取款码
             $withdrawCode = new WithdrawableCodeDisburse($novapay);
-            //创建
+//            //创建
             $disburseCall = $withdrawCode->create($disburseAppId);
             $disburseResult = json_decode($disburseCall['response'],true);
 
             echo "\n取款码：\n";
             print_r(json_encode($disburseResult,JSON_PRETTY_PRINT));
 
-            //查询
+//            //查询
             $orderNo = $disburseResult['data']['orderNo'];
-            $disburseQueryCall = $withdrawCode->query('ORDER_NO',$orderNo);
+            $disburseQueryCall = $withdrawCode->query('MCH_ORDER_NO',$orderNo);
             $disburseQueryResult = json_decode($disburseQueryCall['response'],true);
 
             echo "\n取款码查询：\n";
@@ -126,7 +126,7 @@ $handlers = [
         'bankPayment' => function()use($novapay,$paymentAppId){
             //银行付款链接
             $bankPayment= new BankPayment($novapay);
-            //创建
+//            //创建
             $paymentCall = $bankPayment->create($paymentAppId);
             $paymentResult = json_decode($paymentCall['response'],true);
 
@@ -134,7 +134,7 @@ $handlers = [
             print_r(json_encode($paymentResult,JSON_PRETTY_PRINT));
 
             //查询
-            $orderNo = $paymentResult['data']['orderNo'];
+            $orderNo = $paymentResult['data']['order']['orderNo'];
             $queryCall = $bankPayment->query('ORDER_NO',$orderNo);
             $queryResult = json_decode($queryCall['response'],true);
 
