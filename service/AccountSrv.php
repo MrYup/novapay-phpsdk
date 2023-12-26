@@ -16,15 +16,13 @@ class AccountSrv
     /**
      * 指定时间点的账户余额信息
      * @param string $before
-     * @return void
      */
     public function snapBalance(string $before = ''){
         $body = [
             'before' => $before,
         ];
 
-        $result = $this->instance->hitEndpoint('/account/balance',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/account/balance',$body);
     }
 
     /**
@@ -36,7 +34,6 @@ class AccountSrv
      * @param $pageSize
      * @param $startTime
      * @param $endTime
-     * @return void
      */
     public function realTimeBills($orderType=''
         ,$onFilter=''
@@ -48,20 +45,17 @@ class AccountSrv
     ){
         $body = compact('orderType','onFilter','onValue','page','pageSize','startTime','endTime');
 
-        $result = $this->instance->hitEndpoint('/account/bills/real-time',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/account/bills/real-time',$body);
     }
 
     /**
      * 日切账单(Beta)
      * @param $billStartDate
      * @param $billEndDate
-     * @return void
      */
     public function dailyBills($billStartDate='',$billEndDate=''){
         $body = compact('billStartDate','billEndDate');
 
-        $result = $this->instance->hitEndpoint('/account/bills/daily',$body);
-        print_r($result);
+        return $this->instance->hitEndpoint('/account/bills/daily',$body);
     }
 }

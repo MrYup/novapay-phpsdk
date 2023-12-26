@@ -75,4 +75,12 @@ class Payment
 
         return $this->instance->hitEndpoint('/payment/get',$body);
     }
+
+
+    public function bankCodeList($paymentAppId){
+        $body = [
+            'appId' => $paymentAppId,
+        ];
+        return $this->instance->hitEndpoint('/payment/bankCodes',$body);
+    }
 }

@@ -165,12 +165,25 @@ $handlers = [
             //查询
             $qrcodePayment->query('ORDER_NO','2312093852027448396603392-PH-PAYIN-QR');
         },
+        'bankCodeList' => function()use($novapay,$paymentAppId){
+            $payment= new Payment($novapay);
+            //创建
+            $paymentCall = $payment->bankCodeList($paymentAppId);
+            $paymentResult = json_decode($paymentCall['response'],true);
+
+            echo "\n通用代收：\n";
+            print_r(json_encode($paymentResult,JSON_PRETTY_PRINT));
+        },
     ],
 
     'account' => [
         '' => function()use($account){
             //查看余额
-            $account->snapBalance();
+            $endpointCall = $account->snapBalance();
+
+            //创建
+            $accountResult = json_decode($endpointCall['response'],true);
+            print_r(json_encode($accountResult,JSON_PRETTY_PRINT));
         },
         'realTimeBills' => function()use($account){
             //实时拉取账单
